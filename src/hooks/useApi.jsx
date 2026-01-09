@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { baseAxios } from "../api/baseAxios"
 
-function useApi() {
+function useApi(id = "") {
     const [data, setData] = useState(null)
     const [loading, setLoading] = useState(false)
     const [error, setError] = useState(null)
@@ -9,7 +9,7 @@ function useApi() {
     const getData = async ()=>{
         setLoading(true)
         try {
-            const response = await baseAxios.get("/")
+            const response = await baseAxios({url: id})
             setData(response.data)
         }catch(error){
             setError(error.massage)

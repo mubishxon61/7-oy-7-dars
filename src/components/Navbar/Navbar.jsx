@@ -1,20 +1,22 @@
 import { FaCartShopping } from "react-icons/fa6"
 import { useSelector } from "react-redux"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 
 function Navbar() {
+  const navigate = useNavigate();
   const cartProducts = useSelector((state) => state.products);
-  console.log(cartProducts);
-  
+  const handleClick = () => {
+    navigate("/cart");
+  }
   return (
 <header className="navbar bg-base-100 shadow-md">
   <div className="container flex items-center">
     <Link to={"/"} className="btn btn-ghost text-xl mr-auto">Products</Link>
- <button type="button" className="relative">
-  {!!cartProducts.length && <span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl w-6 ">
+ <button onClick={handleClick} type="button" className="relative">
+  {!!cartProducts.length && (<span className="absolute top-0 right-0 translate-x-1/2 -translate-y-1/2 bg-primary rounded-2xl w-6 ">
   {cartProducts.length}
-  </span> }
+  </span> )}
  <FaCartShopping size={24}/>
  </button>
  </div>

@@ -6,7 +6,6 @@ import useApi from "../../hooks/useApi";
 
 function Home() {
   const {data, loading} = useApi();
-  console.log(data);
   
   if (loading) {
     return <Loading/>;
@@ -14,9 +13,7 @@ function Home() {
   
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar/>
-      <main className="flex-1 py-10">
-        {/* products */}
+      {/* products */}
         <div className="container">
           <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
           {data && data.map((product) => (
@@ -24,8 +21,7 @@ function Home() {
           ))}
           </ul>
         </div>
-      </main>
-      <Footer/>
+
     </div>
   );
 }
